@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="App">
+    <output-path>$PROJECT_DIR$/out/artifacts/App.ear</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="App/javaeeApplication/javaEEApplication" />
+      <element id="directory" name="ejb.jar">
+        <element id="artifact" artifact-name="web:ejb exploded" />
+      </element>
+      <element id="directory" name="lib">
+        <element id="library" level="project" name="cdi-1.1.8" />
+        <element id="library" level="project" name="hibernate-4.2.0" />
+        <element id="library" level="project" name="JPA 2.0-2.0" />
+        <element id="library" level="project" name="jsf-2.0.1-FCS" />
+        <element id="library" level="application" name="Primefaces" />
+        <element id="library" level="project" name="ojdbc6" />
+        <element id="library" level="application" name="Jboss libs" />
+        <element id="library" level="application" name="groovy-2.1.2" />
+      </element>
+    </root>
+  </artifact>
+</component>

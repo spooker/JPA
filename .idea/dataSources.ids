@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Oracle - ORCL@localhost" uuid="c37dc314-48de-4473-a552-55d4a56d7243">
+    <database-info product="Oracle" version="Oracle Database 11g Enterprise Edition Release 11.1.0.6.0 - Production&#xa;With the Partitioning, OLAP, Data Mining and Real Application Testing options" jdbc-version="11.1" driver-name="Oracle JDBC driver" driver-version="11.1.0.7.0-Production">
+      <extra-name-characters>$#</extra-name-characters>
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
+    <schema name="HR" catalog=""/>
+    <table name="COUNTRIES" schema="HR" catalog="" type="TABLE">
+      <column name="COUNTRY_ID" sqlType="CHAR" length="2" precision="0" nullable="false" jdbcType="1"/>
+      <column name="COUNTRY_NAME" sqlType="VARCHAR2" length="40" precision="0" nullable="true" jdbcType="12"/>
+      <column name="REGION_ID" sqlType="NUMBER" length="22" precision="0" nullable="true" jdbcType="3"/>
+      <primary-key name="COUNTRY_C_ID_PK" columns="COUNTRY_ID"/>
+      <foreign-key name="COUNTR_REG_FK" columns="REGION_ID" ref-table="REGIONS" ref-schema="HR" ref-catalog="" ref-columns="REGION_ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <exported-key name="LOC_C_ID_FK" table="LOCATIONS" schema="HR" catalog="" columns="COUNTRY_ID"/>
+    </table>
+    <table name="DEPARTMENTS" schema="HR" catalog="" type="TABLE">
+      <column name="DEPARTMENT_ID" sqlType="NUMBER" length="4" precision="0" nullable="false" jdbcType="3"/>
+      <column name="DEPARTMENT_NAME" sqlType="VARCHAR2" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="MANAGER_ID" sqlType="NUMBER" length="6" precision="0" nullable="true" jdbcType="3"/>
+      <column name="LOCATION_ID" sqlType="NUMBER" length="4" precision="0" nullable="true" jdbcType="3"/>
+      <primary-key name="DEPT_ID_PK" columns="DEPARTMENT_ID"/>
+      <foreign-key name="DEPT_MGR_FK" columns="MANAGER_ID" ref-table="EMPLOYEES" ref-schema="HR" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="DEPT_LOC_FK" columns="LOCATION_ID" ref-table="LOCATIONS" ref-schema="HR" ref-catalog="" ref-columns="LOCATION_ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <exported-key name="EMP_DEPT_FK" table="EMPLOYEES" schema="HR" catalog="" columns="DEPARTMENT_ID"/>
+      <exported-key name="JHIST_DEPT_FK" table="JOB_HISTORY" schema="HR" catalog="" columns="DEPARTMENT_ID"/>
+      <index name="DEPT_LOCATION_IX" unique="true" columns="LOCATION_ID"/>
+    </table>
+    <table name="DEPARTMENTS_SEQ" schema="HR" catalog="" type="SEQUENCE"/>
+    <table name="EMPLOYEES" schema="HR" catalog="" type="TABLE">
+      <column name="ID" sqlType="NUMBER" length="6" precision="0" nullable="false" jdbcType="3" version="true"/>
+      <column name="FIRST_NAME" sqlType="VARCHAR2" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <column name="LAST_NAME" sqlType="VARCHAR2" length="25" precision="0" nullable="false" jdbcType="12"/>
+      <column name="EMAIL" sqlType="VARCHAR2" length="25" precision="0" nullable="false" jdbcType="12"/>
+      <column name="PHONE_NUMBER" sqlType="VARCHAR2" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <column name="HIRE_DATE" sqlType="DATE" length="7" precision="0" nullable="false" jdbcType="93" version="true"/>
+      <column name="JOB_ID" sqlType="VARCHAR2" length="10" precision="0" nullable="false" jdbcType="12" version="true"/>
+      <column name="SALARY" sqlType="NUMBER" length="8" precision="2" nullable="true" jdbcType="3"/>
+      <column name="COMMISSION_PCT" sqlType="NUMBER" length="2" precision="2" nullable="true" jdbcType="3"/>
+      <column name="MANAGER_ID" sqlType="NUMBER" length="6" precision="0" nullable="true" jdbcType="3"/>
+      <column name="DEPARTMENT_ID" sqlType="NUMBER" length="4" precision="0" nullable="true" jdbcType="3" version="true"/>
+      <column name="BIRTHDATE" sqlType="DATE" length="7" precision="0" nullable="true" jdbcType="93"/>
+      <column name="ADDRESS" sqlType="VARCHAR2" length="400" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="EMP_PK" columns="ID"/>
+      <foreign-key name="EMP_DEPT_FK" columns="DEPARTMENT_ID" ref-table="DEPARTMENTS" ref-schema="HR" ref-catalog="" ref-columns="DEPARTMENT_ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="EMP_MANAGER_FK" columns="MANAGER_ID" ref-table="EMPLOYEES" ref-schema="HR" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="EMP_JOB_FK" columns="JOB_ID" ref-table="JOBS" ref-schema="HR" ref-catalog="" ref-columns="JOB_ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <exported-key name="DEPT_MGR_FK" table="DEPARTMENTS" schema="HR" catalog="" columns="MANAGER_ID"/>
+      <exported-key name="EMP_MANAGER_FK" table="EMPLOYEES" schema="HR" catalog="" columns="MANAGER_ID"/>
+      <exported-key name="EMP_PROJ_EMP_FK" table="EMP_PROJ" schema="HR" catalog="" columns="EMP_ID"/>
+      <exported-key name="JHIST_EMP_FK" table="JOB_HISTORY" schema="HR" catalog="" columns="EMPLOYEE_ID"/>
+      <index name="EMP_EMAIL_UK" unique="true" columns="EMAIL"/>
+      <index name="EMP_DEPARTMENT_IX" unique="true" columns="DEPARTMENT_ID"/>
+      <index name="EMP_JOB_IX" unique="true" columns="JOB_ID"/>
+      <index name="EMP_MANAGER_IX" unique="true" columns="MANAGER_ID"/>
+      <index name="EMP_NAME_IX" unique="true" columns="LAST_NAME,FIRST_NAME"/>
+    </table>
+    <table name="EMPLOYEES_SEQ" schema="HR" catalog="" type="SEQUENCE"/>
+    <table name="EMP_DETAILS_VIEW" schema="HR" catalog="" type="VIEW">
+      <column name="EMPLOYEE_ID" sqlType="NUMBER" length="6" precision="0" nullable="false" jdbcType="3"/>
+      <column name="JOB_ID" sqlType="VARCHAR2" length="10" precision="0" nullable="false" jdbcType="12"/>
+      <column name="MANAGER_ID" sqlType="NUMBER" length="6" precision="0" nullable="true" jdbcType="3"/>
+      <column name="DEPARTMENT_ID" sqlType="NUMBER" length="4" precision="0" nullable="true" jdbcType="3"/>
+      <column name="LOCATION_ID" sqlType="NUMBER" length="4" precision="0" nullable="true" jdbcType="3"/>
+      <column name="COUNTRY_ID" sqlType="CHAR" length="2" precision="0" nullable="true" jdbcType="1"/>
+      <column name="FIRST_NAME" sqlType="VARCHAR2" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <column name="LAST_NAME" sqlType="VARCHAR2" length="25" precision="0" nullable="false" jdbcType="12"/>
+      <column name="SALARY" sqlType="NUMBER" length="8" precision="2" nullable="true" jdbcType="3"/>
+      <column name="COMMISSION_PCT" sqlType="NUMBER" length="2" precision="2" nullable="true" jdbcType="3"/>
+      <column name="DEPARTMENT_NAME" sqlType="VARCHAR2" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="JOB_TITLE" sqlType="VARCHAR2" length="35" precision="0" nullable="false" jdbcType="12"/>
+      <column name="CITY" sqlType="VARCHAR2" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="STATE_PROVINCE" sqlType="VARCHAR2" length="25" precision="0" nullable="true" jdbcType="12"/>
+      <column name="COUNTRY_NAME" sqlType="VARCHAR2" length="40" precision="0" nullable="true" jdbcType="12"/>
+      <column name="REGION_NAME" sqlType="VARCHAR2" length="25" precision="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="EMP_PROJ" schema="HR" catalog="" type="TABLE">
+      <column name="EMP_ID" sqlType="NUMBER" length="12" precision="0" nullable="false" jdbcType="3"/>
+      <column name="PRJ_ID" sqlType="NUMBER" length="12" precision="0" nullable="false" jdbcType="3"/>
+      <primary-key name="EMP_PROJ_PK" columns="EMP_ID,PRJ_ID"/>
+      <foreign-key name="EMP_PROJ_EMP_FK" columns="EMP_ID" ref-table="EMPLOYEES" ref-schema="HR" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="EMP_PROJ_PRJ_FK" columns="PRJ_ID" ref-table="PROJECTS" ref-schema="HR" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <index name="EMP_PROJ_PRJ_FK_I" unique="true" columns="PRJ_ID"/>
+    </table>
+    <table name="JOBS" schema="HR" catalog="" type="TABLE">
+      <column name="JOB_ID" sqlType="VARCHAR2" length="10" precision="0" nullable="false" jdbcType="12"/>
+      <column name="JOB_TITLE" sqlType="VARCHAR2" length="35" precision="0" nullable="false" jdbcType="12"/>
+      <column name="MIN_SALARY" sqlType="NUMBER" length="6" precision="0" nullable="true" jdbcType="3"/>
+      <column name="MAX_SALARY" sqlType="NUMBER" length="6" precision="0" nullable="true" jdbcType="3"/>
+      <primary-key name="JOB_ID_PK" columns="JOB_ID"/>
+      <exported-key name="EMP_JOB_FK" table="EMPLOYEES" schema="HR" catalog="" columns="JOB_ID"/>
+      <exported-key name="JHIST_JOB_FK" table="JOB_HISTORY" schema="HR" catalog="" columns="JOB_ID"/>
+    </table>
+    <table name="JOB_HISTORY" schema="HR" catalog="" type="TABLE">
+      <column name="EMPLOYEE_ID" sqlType="NUMBER" length="6" precision="0" nullable="false" jdbcType="3"/>
+      <column name="START_DATE" sqlType="DATE" length="7" precision="0" nullable="false" jdbcType="93"/>
+      <column name="END_DATE" sqlType="DATE" length="7" precision="0" nullable="false" jdbcType="93"/>
+      <column name="JOB_ID" sqlType="VARCHAR2" length="10" precision="0" nullable="false" jdbcType="12"/>
+      <column name="DEPARTMENT_ID" sqlType="NUMBER" length="4" precision="0" nullable="true" jdbcType="3"/>
+      <primary-key name="JHIST_EMP_ID_ST_DATE_PK" columns="EMPLOYEE_ID,START_DATE"/>
+      <foreign-key name="JHIST_DEPT_FK" columns="DEPARTMENT_ID" ref-table="DEPARTMENTS" ref-schema="HR" ref-catalog="" ref-columns="DEPARTMENT_ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="JHIST_EMP_FK" columns="EMPLOYEE_ID" ref-table="EMPLOYEES" ref-schema="HR" ref-catalog="" ref-columns="ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <foreign-key name="JHIST_JOB_FK" columns="JOB_ID" ref-table="JOBS" ref-schema="HR" ref-catalog="" ref-columns="JOB_ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <index name="JHIST_DEPARTMENT_IX" unique="true" columns="DEPARTMENT_ID"/>
+      <index name="JHIST_EMPLOYEE_IX" unique="true" columns="EMPLOYEE_ID"/>
+      <index name="JHIST_JOB_IX" unique="true" columns="JOB_ID"/>
+    </table>
+    <table name="LOCATIONS" schema="HR" catalog="" type="TABLE">
+      <column name="LOCATION_ID" sqlType="NUMBER" length="4" precision="0" nullable="false" jdbcType="3"/>
+      <column name="STREET_ADDRESS" sqlType="VARCHAR2" length="40" precision="0" nullable="true" jdbcType="12"/>
+      <column name="POSTAL_CODE" sqlType="VARCHAR2" length="12" precision="0" nullable="true" jdbcType="12"/>
+      <column name="CITY" sqlType="VARCHAR2" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="STATE_PROVINCE" sqlType="VARCHAR2" length="25" precision="0" nullable="true" jdbcType="12"/>
+      <column name="COUNTRY_ID" sqlType="CHAR" length="2" precision="0" nullable="true" jdbcType="1"/>
+      <primary-key name="LOC_ID_PK" columns="LOCATION_ID"/>
+      <foreign-key name="LOC_C_ID_FK" columns="COUNTRY_ID" ref-table="COUNTRIES" ref-schema="HR" ref-catalog="" ref-columns="COUNTRY_ID" update-rule="0" delete-rule="1" deferrability="2"/>
+      <exported-key name="DEPT_LOC_FK" table="DEPARTMENTS" schema="HR" catalog="" columns="LOCATION_ID"/>
+      <index name="LOC_CITY_IX" unique="true" columns="CITY"/>
+      <index name="LOC_COUNTRY_IX" unique="true" columns="COUNTRY_ID"/>
+      <index name="LOC_STATE_PROVINCE_IX" unique="true" columns="STATE_PROVINCE"/>
+    </table>
+    <table name="LOCATIONS_SEQ" schema="HR" catalog="" type="SEQUENCE"/>
+    <table name="PROJECTS" schema="HR" catalog="" type="TABLE">
+      <column name="ID" sqlType="NUMBER" length="12" precision="0" nullable="false" jdbcType="3"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR2" length="2000" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRJ_PK" columns="ID"/>
+      <exported-key name="EMP_PROJ_PRJ_FK" table="EMP_PROJ" schema="HR" catalog="" columns="PRJ_ID"/>
+    </table>
+    <table name="REGIONS" schema="HR" catalog="" type="TABLE">
+      <column name="REGION_ID" sqlType="NUMBER" length="22" precision="0" nullable="false" jdbcType="3"/>
+      <column name="REGION_NAME" sqlType="VARCHAR2" length="25" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="REG_ID_PK" columns="REGION_ID"/>
+      <exported-key name="COUNTR_REG_FK" table="COUNTRIES" schema="HR" catalog="" columns="REGION_ID"/>
+    </table>
+    <procedure name="ADDFOREIGNKEYS" schema="HR" catalog="" type="1" package="UTILITIES" remarks="UGFja2FnZWQgcHJvY2VkdXJl">
+      <prototype>
+        <parameter name="I_SCHEMA" sqlType="VARCHAR2" length="32767" precision="0" nullable="true" jdbcType="12" type="1" index="0"/>
+        <parameter name="I_TABLENAME" sqlType="VARCHAR2" length="32767" precision="0" nullable="true" jdbcType="12" type="1" index="1"/>
+      </prototype>
+    </procedure>
+    <procedure name="ADD_JOB_HISTORY" schema="HR" catalog="" type="1" remarks="U3RhbmRhbG9uZSBwcm9jZWR1cmUgb3IgZnVuY3Rpb24=">
+      <prototype>
+        <parameter name="P_EMP_ID" sqlType="NUMBER" length="22" precision="6" nullable="true" jdbcType="3" type="1" index="0"/>
+        <parameter name="P_START_DATE" sqlType="DATE" length="0" precision="0" nullable="true" jdbcType="93" type="1" index="1"/>
+        <parameter name="P_END_DATE" sqlType="DATE" length="0" precision="0" nullable="true" jdbcType="93" type="1" index="2"/>
+        <parameter name="P_JOB_ID" sqlType="VARCHAR2" length="32767" precision="10" nullable="true" jdbcType="12" type="1" index="3"/>
+        <parameter name="P_DEPARTMENT_ID" sqlType="NUMBER" length="22" precision="4" nullable="true" jdbcType="3" type="1" index="4"/>
+      </prototype>
+    </procedure>
+    <procedure name="SECURE_DML" schema="HR" catalog="" type="1" remarks="U3RhbmRhbG9uZSBwcm9jZWR1cmUgb3IgZnVuY3Rpb24="/>
+  </data-source>
+</component>

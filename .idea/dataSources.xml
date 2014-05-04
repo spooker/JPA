@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3039982308">
+    <data-source source="LOCAL" name="Oracle - ORCL@localhost" uuid="c37dc314-48de-4473-a552-55d4a56d7243">
+      <driver-ref>oracle</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@//localhost:1521/ORCL</jdbc-url>
+      <user-name>HR</user-name>
+      <user-password>dfe2dff8</user-password>
+      <schema-pattern>*.HR</schema-pattern>
+      <libraries>
+        <library>
+          <url>file://C:/Development Tools/Oracle jdbc/ojdbc6.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+

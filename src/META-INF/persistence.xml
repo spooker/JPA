@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="PU">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>java:jboss/datasources/HRDS</jta-data-source>
+        <class>net.spooker.entities.Countries</class>
+        <class>net.spooker.entities.Departments</class>
+        <class>net.spooker.entities.Employees</class>
+        <class>net.spooker.entities.EmpProj</class>
+        <class>net.spooker.entities.Jobs</class>
+        <class>net.spooker.entities.Projects</class>
+        <class>net.spooker.entities.Regions</class>
+        <class>net.spooker.entities.EmpHobbies</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:HR/HR@//localhost:1521/ORCL"/>
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.OracleDriver"/>
+            <property name="hibernate.connection.username" value="HR"/>
+            <property name="hibernate.connection.password" value="HR"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+        </properties>
+    </persistence-unit>
+</persistence>
